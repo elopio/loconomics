@@ -83,5 +83,7 @@ module.exports = {
     'instantBooking': require('./activities/instantBooking'),
     'ownerPerks': require('./activities/ownerPerks'),
     'cancellationPolicies': require('./activities/cancellationPolicies'),
-    'zServiceProfessionalServiceEditor': require('./activities/zServiceProfessionalServiceEditor')
+    'mockupHouseCleanerServiceEditor': require('./activities/mockupHouseCleanerServiceEditor'),
+    'mockupDogWalkerServiceEditor': require('./activities/mockupDogWalkerServiceEditor'),
+    'mockupBabySitterServiceEditor': require('./activities/mockupBabySitterServiceEditor')
 };

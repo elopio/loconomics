@@ -4,7 +4,7 @@
 'use strict';
 
 var Activity = require('../components/Activity');
-var A = Activity.extend(function zServiceProfessionalServiceEditorActivity() {
+var A = Activity.extend(function mockupDogWalkerServiceEditorActivity() {
 
     Activity.apply(this, arguments);
 
