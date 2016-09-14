@@ -60,7 +60,7 @@
                             <tfoot>
                                 <tr>
                                     <th class="PricingSummary-concept">Total</th>
-                                    <th class="PricingSummary-price"><span data-bind="text: booking().pricingSummary().totalPrice, format: { type: 'number', format: '$#,##0.00' }"></span>*</th>
+                                    <th class="PricingSummary-price"><span data-bind="text: booking().pricingSummary().totalPrice, format: { type: 'number', format: '$#,##0.00' }"></span><span data-bind="visible: booking().pricingSummary().clientServiceFeePrice() > 0">*</span></th>
                                 </tr>
                                 <tr data-bind="visible: booking().pricingSummary().clientServiceFeePrice() > 0">
                                     <td class="PricingSummary-fees" colspan="2">
@@ -69,7 +69,7 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        <div class="PricingSummary-time isolated inset">
+                        <div class="PricingSummary-time isolated inset" data-bind="visible: booking().pricingSummary().firstSessionDurationDisplay">
                             <span class="fa fa-lg ion ion-ios-clock-outline" aria-hidden="true"></span>
                             <span data-bind="text: booking().pricingSummary().firstSessionDurationDisplay"></span>
                         </div>
@@ -601,15 +601,6 @@
                                 <div class="row">
                                     <div class="col-xs-5" data-bind="template: { name: 'signup-field', data: { field: postalCode, label: 'Postal code', icon: 'ion-ios-home-outline' } }"></div>
                                     <div class="col-xs-7" data-bind="template: { name: 'signup-field', data: { field: referralCode, label: 'Referral code', icon: 'ion-android-contacts' } }"></div>
-                                </div>
-                                <div class="form-group has-feedback" data-bind="css: { 'has-error': device.error }, visible: forServiceProfessional">
-                                    <label for="device">Device</label>
-                                    <select data-bind="value: device" class="form-control select-unstyled">
-                                        <option value="">Select your device</option>
-                                        <option value="ios">iPhone/iPad</option>
-                                        <option value="android">Android</option>
-                                    </select>
-                                    <i class="fa ion-iphone form-control-feedback text-muted pull-right icon-right" aria-hidden="true"></i>
                                 </div>
                                 <div data-bind="template: { name: 'signup-field', data: { field: phone, label: 'Mobile phone', icon: 'ion-ios-telephone-outline' } }, visible: forServiceProfessional"></div>
                                 <div class="form-group has-feedback" data-bind="css: { 'has-error': email.error }">

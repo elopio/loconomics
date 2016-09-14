@@ -27,7 +27,10 @@ module.exports = function(grunt) {
                 cordovajs: false,
                 siteUrl: 'http://dev.loconomics.com',
                 facebookAppID: facebookAppID,
-                facebookLang: facebookLang
+                facebookLang: facebookLang,
+                appVersion: '<%= package.version %>',
+                appId: '<%= package.appId %>',
+                appName: '<%= package.appName %>'
             }
           }
         },
@@ -39,10 +42,14 @@ module.exports = function(grunt) {
             context: {
                 debug: false,
                 includedFiles: includedFiles,
+                cordovajs: false,
                 facebookAppID: facebookAppID,
                 facebookLang: facebookLang,
                 cssVersion: version,
-                jsVersion: version
+                jsVersion: version,
+                appVersion: '<%= package.version %>',
+                appId: '<%= package.appId %>',
+                appName: '<%= package.appName %>'
             }
           }
         },
@@ -57,7 +64,10 @@ module.exports = function(grunt) {
                 cordovajs: false,
                 siteUrl: 'http://dev.loconomics.com',
                 facebookAppID: facebookAppID,
-                facebookLang: facebookLang
+                facebookLang: facebookLang,
+                appVersion: '<%= package.version %>',
+                appId: '<%= package.devAppId %>',
+                appName: '<%= package.devAppName %>'
                 //siteUrl: 'http://localhost/source'
             }
           }
@@ -73,7 +83,10 @@ module.exports = function(grunt) {
                 cordovajs: true,
                 siteUrl: 'https://loconomics.com',
                 facebookAppID: facebookAppID,
-                facebookLang: facebookLang
+                facebookLang: facebookLang,
+                appVersion: '<%= package.version %>',
+                appId: '<%= package.appId %>',
+                appName: '<%= package.appName %>'
             }
           }
         },
@@ -88,7 +101,10 @@ module.exports = function(grunt) {
                 cordovajs: true,
                 siteUrl: 'http://dev.loconomics.com',
                 facebookAppID: facebookAppID,
-                facebookLang: facebookLang
+                facebookLang: facebookLang,
+                appVersion: '<%= package.version %>',
+                appId: '<%= package.devAppId %>',
+                appName: '<%= package.devAppName %>'
             }
           }
         },
