@@ -85,5 +85,12 @@ module.exports = {
     'cancellationPolicies': require('./activities/cancellationPolicies'),
     'mockupHouseCleanerServiceEditor': require('./activities/mockupHouseCleanerServiceEditor'),
     'mockupDogWalkerServiceEditor': require('./activities/mockupDogWalkerServiceEditor'),
-    'mockupBabySitterServiceEditor': require('./activities/mockupBabySitterServiceEditor')
+    'mockupBabySitterServiceEditor': require('./activities/mockupBabySitterServiceEditor'),
+    'mockupRateEditor': require('./activities/mockupRateEditor'),
+    'mockupServiceConsultationEditor': require('./activities/mockupServiceConsultationEditor'),
+    'mockupServiceEditor': require('./activities/mockupServiceEditor'),
+    'mockupPackageEditor': require('./activities/mockupPackageEditor'),
+    'mockupPackageMultiClientServiceEditor': require('./activities/mockupPackageMultiClientServiceEditor'),
+    'mockupRollingMultiClientServiceEditor': require('./activities/mockupRollingMultiClientServiceEditor'),
+    'mockupContractServiceEditor': require('./activities/mockupContractServiceEditor')
 };

@@ -1,0 +1,231 @@
+<!-- Activity mockupHouseCleanerServiceEditor -->
+<div data-activity="mockupPackageEditor" class="Boxes-sm animated">
+    <app-inline-user-menu>@render('parts/UserMenuContents.html')</app-inline-user-menu>
+    <div class="container">
+        <div class="row">  
+            <div class="SubSectionNavBar hidden-xs hidden-sm">
+                <ul>
+                    <li>
+                        <a href="#" data-shell="goBack"><i class="fa fa-fw ion-ios-arrow-thin-left"></i> Back</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7 col-sm-reset">
+                <form class="container-fluid LightForm" role="form">
+                    <h2 class="SectionTitle">
+                        <span>Service for Joshua</span>
+                        <span class="pull-right hidden-xs hidden-sm"><a class="hidden-xs hidden-sm" href="https://loconomics.com/#!/help/relatedArticles/201967166-listing-and-pricing-your-services" target="_blank">Help <i class="fa fa-fw ion-ios-help-outline"></i></a>
+                        </span>
+                    </h2>
+                    <div>
+                        <div style="margin: 15px">
+                            <label>What would you like to create?</label>
+                            <div class="row">
+                                <label class="btn btn-default">
+                                    <span>Appointment</span>
+                                </label>
+                                <label class="btn btn-default">
+                                    <span>Estimate</span>
+                                </label>
+                                <label class="btn btn-default">
+                                    <span>Invoice</span>
+                                </label>
+                                <label class="btn btn-default">
+                                    <span>Receipt</span>
+                                </label>
+                            </div>
+                        </div>
+                            
+                        <div class="form-inline isolated">
+                            <div class="form-group">
+                                <input type="text" class="form-control" style="width: 500px;" placeholder="Type the name of the service">
+                            </div>                    
+                        </div>
+                        <div class="form-inline isolated">
+                            <div class="form-group">
+                                <label class="control-label">Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input id="serviceProfessionalServiceEditor-price" type="number" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin: 15px">
+                            <label>Duration</label>
+                            <div class="row">
+                                <span class="col-xs-12 col-sm-5 form-group">
+                                    <label class="control-label sr-only">Hours</label>
+                                    <div class="input-group">
+                                        <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control"/>
+                                        <span class="input-group-addon">hours</span>
+                                    </div>
+                                </span>
+                                <span class="col-xs-12 col-sm-offset-1 col-sm-5 form-group">
+                                    <label class="control-label sr-only">Minutes</label>
+                                    <div class="input-group">
+                                        <input id="serviceProfessionalServiceEditor-durationMinutes" type="number" class="form-control"/>
+                                        <span class="input-group-addon">minutes</span>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="margin: 15px">
+                            <label>Bedrooms</label>
+                            <div class="row">
+                            <label class="btn btn-default">
+                                <span>1</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>2</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>3</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>4</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>5</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>More</span>
+                            </label>
+                            </div>
+                            
+                        </div>
+                        <div style="margin: 15px">
+                            <label>Bathrooms</label>
+                            <div class="row">
+                            <label class="btn btn-default">
+                                <span>1</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>2</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>3</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>4</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>5</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>More</span>
+                            </label>
+                            </div>
+                            </div>
+                        <div style="margin: 15px">
+                            <label>Floors</label>
+                            <div class="row">
+                            <label class="btn btn-default">
+                                <span>1</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>2</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>3</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>4</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>5</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>More</span>
+                            </label>
+                            </div>
+                            </div>
+                        <div style="margin: 15px">
+                            <label>Estimated square footage</label>
+                            <div class="row">
+                                <span class="col-xs-12 col-sm-5 form-group">
+                                    <label class="control-label sr-only">Sq Feet</label>
+                                    <div class="input-group">
+                                        <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control"/>
+                                        <span class="input-group-addon">sq feet</span>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="margin: 15px">
+                            <label>Pets</label>
+                            <div class="row">
+                            <label class="btn btn-default">
+                                <span>Dog(s)</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Cat(s)</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Fish</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Reptile(s)</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Bird(s)</span>
+                            </label>
+                            </div>
+                            </div>
+                        <div style="margin: 15px">
+                            <label>Included</label>
+                            <div class="row"> 
+                            <label class="btn btn-default">
+                                <span>Appliance wipedowns</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Bathroom cleaning</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Bed making</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Cabinet cleaning</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Dusting</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Mopping</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Sweeping</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Vacuuming</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Cleaning products</span>
+                            </label>
+                            <label class="btn btn-default">
+                                <span>Add new <i class="fa fa-fw ion-plus"></i></span>
+                            </label>
+                            </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="control-label"><span>Description</span></label>
+                            <textarea class="form-control" id="serviceProfessionalServiceEditor-description" type="number">
+                            </textarea>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"/>
+                                <span>Make this service available to all clients</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="LightForm-submitBar">
+                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+                    </div>       
+                </form>
+            </div>
+            <div class="SideMenu hidden-xs hidden-sm col-md-3 col-md-offset-1">
+                <app-inline-side-menu params="vocElement: 'scheduling'"></app-inline-side-menu>
+            </div>
+        </div>
+    </div>
+</div>
