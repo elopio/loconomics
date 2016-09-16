@@ -92,5 +92,7 @@ module.exports = {
     'mockupPackageEditor': require('./activities/mockupPackageEditor'),
     'mockupPackageMultiClientServiceEditor': require('./activities/mockupPackageMultiClientServiceEditor'),
     'mockupRollingMultiClientServiceEditor': require('./activities/mockupRollingMultiClientServiceEditor'),
-    'mockupContractServiceEditor': require('./activities/mockupContractServiceEditor')
+    'mockupContractServiceEditor': require('./activities/mockupContractServiceEditor'),
+    'mockupPetSitterServiceEditor': require('./activities/mockupPetSitterServiceEditor'),
+    'mockupHouseSitterServiceEditor': require('./activities/mockupHouseSitterServiceEditor')
 };
