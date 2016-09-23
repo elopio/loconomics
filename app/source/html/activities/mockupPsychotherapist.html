@@ -1,7 +1,7 @@
 <!-- Activity mockupHouseCleanerServiceEditor -->
 <div data-activity="mockupPsychotherapist" class="Boxes-sm animated">
     <app-inline-user-menu>@render('parts/UserMenuContents.html')</app-inline-user-menu>
-    <div class="container">
+    <div class="container ServiceProfessionalPricing">
         <div class="row">  
             <div class="SubSectionNavBar hidden-xs hidden-sm">
                 <ul>
@@ -16,200 +16,89 @@
                         <span>Add new Psychotherapist services</span>
                         <span class="pull-right hidden-xs hidden-sm"><a class="hidden-xs hidden-sm" href="https://loconomics.com/#!/help/relatedArticles/201967166-listing-and-pricing-your-services" target="_blank">Help <i class="fa fa-fw ion-ios-help-outline"></i></a>
                         </span>
-                    </h2>
-                    <div>                            
+                    </h2>                       
+                    <div class="form-inline isolated">
+                        <label>What will clients be booking?</label>
+                        <input type="text" class="form-control" placeholder="Type the name of the service, e.g. Weekly session">             
+                    </div>
+                        <div class="PricingSection">
+                            <div class="row">
+                            <label>Who can book this service?</label>
+                                <div class="Select Select-block ">
+                                    <select class="select-unstyled selectpicker">
+                                         <option value="3">Anyone</option>
+                                         <option value="1">First-time clients only</option>
+                                         <option value="2">Existing clients only</option>
+                                         <option value="4">Certain clients only</option>
+                                    </select>
+                                </div>
+<!--
+                                <div class="select select-block ">
+                                    <select class="select-unstyled selectpicker">
+                                            <option value="4">Joshua Danielson</option>
+                                            <option value="5">Iago Lorenzo</option>
+                                            <option value="6">Juan Sanchez</option>
+                                    </select>
+                                </div>
+-->
+                            </div>
+                        </div>
+                        <div class="PricingSection">
+                            <div class="row">
+                                <label>Where can this service be booked?</label>
+                                    <div class="Select Select-block ">
+                                        <select class="select-unstyled selectpicker">
+                                            <optgroup label="My service locations">
+                                             <option value="1">My studio</option>
+                                             <option value="2">Add new service location</option>
+                                            </optgroup>
+                                            <optgroup label="My service areas">
+                                             <option value="2">5.0 miles from 94110</option>
+                                             <option value="2">Add new service area</option>
+                                            </optgroup>
+                                            <optgroup label="Remote options">
+                                             <option value="4">Phone call</option>
+                                             <option value="5">Facetime</option>
+                                             <option value="6">Google Hangout</option>
+                                             <option value="7">Skype</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
                         <div class="form-inline isolated">
                             <div class="form-group">
-                                <input type="text" class="form-control" style="width: 500px;" placeholder="Type the name of the service">
-                            </div>                    
-                        </div>
-                        <div class="form-group has-feedback">
-                                <label class="control-label">Who can book this?</label>
-                            <select class="form-control select-unstyled">
-                                 <option value="1">First-time clients only</option>
-                                 <option value="2">Existing clients only</option>
-                                 <option value="3">Anyone</option>
-                                 <option value="4">Joshua Danielson</option>
-                            </select>
-                            <i class="fa ion-ios-world-outline text-muted pull-right icon-right form-control-feedback" aria-hidden="true"></i>
-                        </div>
-                        <div class="form-inline isolated">
-                            <div class="form-group">
-                                <label class="control-label">Price</label>
+                                <label class="control-label">What's the price for this service?</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input id="serviceProfessionalServiceEditor-price" type="number" class="form-control"/>
+                                    <input id="serviceProfessionalServiceEditor-price" type="number" class="form-control" min="0" step=".01" placeholder="0.00"/>
                                 </div>
                             </div>
                         </div> 
-                        <div style="margin: 15px">
-                            <label>Duration</label>
+                        <div class="form-inline isolated">
+                            <label class="control-label">How much time will the service take?</label>
                             <div class="row">
                                 <span class="col-xs-12 col-sm-5 form-group">
                                     <label class="control-label sr-only">Hours</label>
                                     <div class="input-group">
-                                        <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control"/>
+                                        <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control" min="0" step="1" placeholder="1"/>
                                         <span class="input-group-addon">hours</span>
                                     </div>
                                 </span>
                                 <span class="col-xs-12 col-sm-offset-1 col-sm-5 form-group">
                                     <label class="control-label sr-only">Minutes</label>
                                     <div class="input-group">
-                                        <input id="serviceProfessionalServiceEditor-durationMinutes" type="number" class="form-control"/>
+                                        <input id="serviceProfessionalServiceEditor-durationMinutes" type="number" class="form-control" min="0" step="15" placeholder="0"/>
                                         <span class="input-group-addon">minutes</span>
                                     </div>
                                 </span>
                             </div>
                         </div>
-                        <div style="margin: 15px">
-                            <label>Bedrooms</label>
-                            <div class="row">
-                            <label class="btn btn-default">
-                                <span>1</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>2</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>3</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>4</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>5</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>More</span>
-                            </label>
-                            </div>
-                            
-                        </div>
-                        <div style="margin: 15px">
-                            <label>Bathrooms</label>
-                            <div class="row">
-                            <label class="btn btn-default">
-                                <span>1</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>2</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>3</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>4</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>5</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>More</span>
-                            </label>
-                            </div>
-                            </div>
-                        <div style="margin: 15px">
-                            <label>Floors</label>
-                            <div class="row">
-                            <label class="btn btn-default">
-                                <span>1</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>2</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>3</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>4</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>5</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>More</span>
-                            </label>
-                            </div>
-                            </div>
-                        <div style="margin: 15px">
-                            <label>Estimated square footage</label>
-                            <div class="row">
-                                <span class="col-xs-12 col-sm-5 form-group">
-                                    <label class="control-label sr-only">Sq Feet</label>
-                                    <div class="input-group">
-                                        <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control"/>
-                                        <span class="input-group-addon">sq feet</span>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                        <div style="margin: 15px">
-                            <label>Pets</label>
-                            <div class="row">
-                            <label class="btn btn-default">
-                                <span>Dog(s)</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Cat(s)</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Fish</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Reptile(s)</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Bird(s)</span>
-                            </label>
-                            </div>
-                            </div>
-                        <div style="margin: 15px">
-                            <label>Included</label>
-                            <div class="row"> 
-                            <label class="btn btn-default">
-                                <span>Appliance wipedowns</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Bathroom cleaning</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Bed making</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Cabinet cleaning</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Dusting</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Mopping</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Sweeping</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Vacuuming</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Cleaning products</span>
-                            </label>
-                            <label class="btn btn-default">
-                                <span>Add new <i class="fa fa-fw ion-plus"></i></span>
-                            </label>
-                            </div>
-                            </div>
                         <div class="form-group">
-                            <label class="control-label"><span>Description</span></label>
-                            <textarea class="form-control" id="serviceProfessionalServiceEditor-description" type="number">
+                            <label class="control-label"><span>What can clients expect with the service?</span></label>
+                            <textarea class="form-control" id="serviceProfessionalServiceEditor-description" type="number" placeholder="Describe the Pyschotherapist services you'll provide">
                             </textarea>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"/>
-                                <span>Make this service available to all clients</span>
-                            </label>
-                        </div>
-                    </div>
                     <div class="LightForm-submitBar">
                         <button type="submit" class="btn btn-primary btn-block">Save</button>
                     </div>       
