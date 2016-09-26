@@ -93,5 +93,6 @@ module.exports = {
     'mockupHouseSitterServiceEditor': require('./activities/mockupHouseSitterServiceEditor'),
     'mockupPsychotherapist': require('./activities/mockupPsychotherapist'),
     'aboutMe': require('./activities/aboutMe'),
-    'onboardingSuccess': require('./activities/onboardingSuccess')
+    'onboardingSuccess': require('./activities/onboardingSuccess'),
+    'mockupDogWalkerPack': require('./activities/mockupDogWalkerPack')
 };
