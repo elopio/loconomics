@@ -14,22 +14,20 @@
                 <form class="container-fluid LightForm" role="form">
                     <h2 class="SectionTitle">
                         <span>Add a new Psychotherapist consultation</span>
-                        <span class="pull-right hidden-xs hidden-sm"><a class="hidden-xs hidden-sm" href="https://loconomics.com/#!/help/relatedArticles/201967166-listing-and-pricing-your-services" target="_blank">Help <i class="fa fa-fw ion-ios-help-outline"></i></a>
-                        </span>
                     </h2>                       
                     <div class="form-inline isolated">
                         <label>What will clients be booking?</label>
-                        <input type="text" class="form-control" placeholder="Type the name of the consultation, e.g. New client consultation">             
+                        <input type="text" class="form-control" placeholder="Type the name of the consultation, e.g. New client consultation"> 
                     </div>
-                        <div class="PricingSection">
-                            <div class="row">
+                    <div class="PricingSection">
+                        <div class="row">
                             <label>Who can book this consultation?</label>
-                                <div class="Select Select-block ">
-                                    <select class="select-unstyled selectpicker">
+                            <div class="Select Select-block">
+                                <select class="select-unstyled selectpicker">
                                          <option value="1">First-time clients only</option>
                                          <option value="3">Anyone</option>
-                                    </select>
-                                </div>
+                                </select>
+                            </div>
 <!--
                                 <div class="select select-block ">
                                     <select class="select-unstyled selectpicker">
@@ -39,69 +37,72 @@
                                     </select>
                                 </div>
 -->
+                        </div>
+                    </div>
+                    <div class="PricingSection">
+                        <div class="row">
+                            <label>Where can this consulation be booked?</label>
+                            <div class="Select Select-block">
+                                <select class="select-unstyled selectpicker">
+                                    <optgroup label="My service locations">
+                                        <option value="1">My studio</option>
+                                        <option value="2">Add new service location</option>
+                                    </optgroup>
+                                    <optgroup label="My service areas">
+                                        <option value="2">5.0 miles from 94110</option>
+                                        <option value="2">Add new service area</option>
+                                    </optgroup>
+                                    <optgroup label="Remote options">
+                                        <option value="4">Phone call</option>
+                                        <option value="5">Facetime</option>
+                                        <option value="6">Google Hangout</option>
+                                        <option value="7">Skype</option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
-                        <div class="PricingSection">
-                            <div class="row">
-                                <label>Where can this consulation be booked?</label>
-                                    <div class="Select Select-block ">
-                                        <select class="select-unstyled selectpicker">
-                                            <optgroup label="My service locations">
-                                             <option value="1">My studio</option>
-                                             <option value="2">Add new service location</option>
-                                            </optgroup>
-                                            <optgroup label="My service areas">
-                                             <option value="2">5.0 miles from 94110</option>
-                                             <option value="2">Add new service area</option>
-                                            </optgroup>
-                                            <optgroup label="Remote options">
-                                             <option value="4">Phone call</option>
-                                             <option value="5">Facetime</option>
-                                             <option value="6">Google Hangout</option>
-                                             <option value="7">Skype</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="form-inline isolated">
-                            <div class="form-group">
-                                <label class="control-label">What's the price for this consultation?</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input id="serviceProfessionalServiceEditor-price" type="number" class="form-control" min="0" step=".01" placeholder="0.00"/>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="form-inline isolated">
-                            <label class="control-label">How much time will the consultation take?</label>
-                            <div class="row">
-                                <span class="col-xs-12 col-sm-5 form-group">
-                                    <label class="control-label sr-only">Hours</label>
-                                    <div class="input-group">
-                                        <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control" min="0" step="1" placeholder="1"/>
-                                        <span class="input-group-addon">hours</span>
-                                    </div>
-                                </span>
-                                <span class="col-xs-12 col-sm-offset-1 col-sm-5 form-group">
-                                    <label class="control-label sr-only">Minutes</label>
-                                    <div class="input-group">
-                                        <input id="serviceProfessionalServiceEditor-durationMinutes" type="number" class="form-control" min="0" step="15" placeholder="0"/>
-                                        <span class="input-group-addon">minutes</span>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="checkbox"> 
+                        <label> 
+                            <input type="checkbox"> <span>This consultation is available to first-time clients only</span> 
+                        </label> 
+                    </div>
+                    <div class="form-inline isolated">
                         <div class="form-group">
-                            <label class="control-label"><span>What can clients expect during the consultation?</span></label>
-                            <textarea class="form-control" id="serviceProfessionalServiceEditor-description" type="number" placeholder="Describe the Pyschotherapist consultation you'll provide">
-                            </textarea>
+                            <label class="control-label">What's the price for this consultation?</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                    <input id="serviceProfessionalServiceEditor-price" type="number" class="form-control" min="0" step=".01" placeholder="0.00"/>
+                            </div>
                         </div>
+                    </div> 
+                    <div class="form-inline isolated">
+                        <label class="control-label">How much time will the consultation take?</label>
+                        <div class="row">
+                            <span class="col-xs-12 col-sm-5 form-group">
+                                <label class="control-label sr-only">Hours</label>
+                                <div class="input-group">
+                                    <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control" min="0" step="1" placeholder="1"/>
+                                    <span class="input-group-addon">hours</span>
+                                </div>
+                            </span>
+                            <span class="col-xs-12 col-sm-offset-1 col-sm-5 form-group">
+                                <label class="control-label sr-only">Minutes</label>
+                                <div class="input-group">
+                                    <input id="serviceProfessionalServiceEditor-durationMinutes" type="number" class="form-control" min="0" step="15" placeholder="0"/>
+                                    <label class="control-label">
+                                        <span>What can clients expect during the consultation?</span>
+                                    </label>
+                                    <textarea class="form-control" id="serviceProfessionalServiceEditor-description" type="number" placeholder="Describe the Pyschotherapist consultation you'll provide"></textarea>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
                     <div class="row">
                         <label class="control-label col-xs-12">My rates start at:</label>
                         <div class="form-group col-xs-12 col-sm-5">
-                            <div class="input-group"> <span class="input-group-addon">$</span> 
-                              <input id="serviceProfessionalServiceEditor-priceRateQuantity" class="form-control" type="number" min="0" step=".01" placeholder="0.00">
+                            <div class="input-group">       <span class="input-group-addon">$</span> 
+                                <input id="serviceProfessionalServiceEditor-priceRateQuantity" class="form-control" type="number" min="0" step=".01" placeholder="0.00">
                             </div>
                         </div>
                         <div class="form-group col-xs-12 col-sm-5">
@@ -128,7 +129,7 @@
                     </div>
                     <div class="LightForm-submitBar">
                         <button type="submit" class="btn btn-primary btn-block">Save</button>
-                    </div>       
+                    </div>      
                 </form>
             </div>
             <div class="SideMenu hidden-xs hidden-sm col-md-3 col-md-offset-1">
