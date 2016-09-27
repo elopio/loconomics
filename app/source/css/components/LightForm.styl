@@ -89,6 +89,9 @@
                 background-color: #fff;
                 color: #484848;
             }
+            .Select-time {
+                width: 100px;
+            }
 
     }
     > * .Select:before {
@@ -113,5 +116,30 @@
 //          display: inline-block;
 //          width: auto;
 //        }
+    }
+    >* input[type="checkbox"] {
+        position: relative;
+        -webkit-appearance: none;
+        height: 1.25em;
+        width: 1.25em;
+        margin-bottom: -0.25em;
+        margin-right: 5px;
+        vertical-align: top;
+        border: 1px solid #c4c4c4;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background-color: #fff;
+        color: #484848;
+        transition: border-color 0.2s;
+    }
+    input[type="checkbox"]:checked:before {
+        content: "\2713";
+        position: absolute;
+        font-size: 0.85em;
+        left: 1px;
+        text-align: center;
+        width: 1.25em;
+        color: #ff5a5f;
     }
 }

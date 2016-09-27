@@ -78,12 +78,12 @@
                         <div class="LightForm-Section">
                             <div class="row">
                                 <label>When does the pack start/end?</label>
-                            <div class="row">
-                                <span class="col-xs-12 col-sm-5 form-group">
-                                    <label class="control-label sr-only">Starts:</label>
-                                    <label>Starts:</label>
-                                    <div class="Select">
-                                        <select class="select-unstyled selectpicker">       
+                                <div class="row">
+                                    <span class="col-xs-12 col-sm-5 form-group">
+                                        <label class="control-label sr-only">Starts:</label>
+                                        <label>Starts:</label>
+                                        <div class="Select">
+                                            <select class="select-unstyled selectpicker Select-time">       
                                                 <option value="30">12:30am</option>
                                                 <option value="60">1:00am</option>
                                                 <option value="90">1:30am</option>
@@ -134,12 +134,12 @@
                                                 <option value="1439">12:00am</option>
                                             </select>
                                         </div>
-                                </span>
-                                <span class="col-xs-12 col-sm-offset-1 col-sm-5 form-group">
-                                    <label class="control-label sr-only">Ends:</label>
-                                    <label>Ends:</label>
-                                    <div class="Select">
-                                        <select class="select-unstyled selectpicker">       
+                                    </span>
+                                    <span class="col-xs-12 col-sm-offset-1 col-sm-5 form-group">
+                                        <label class="control-label sr-only">Ends:</label>
+                                        <label>Ends:</label>
+                                        <div class="Select">
+                                            <select class="select-unstyled selectpicker Select-time">
                                                 <option value="30">12:30am</option>
                                                 <option value="60">1:00am</option>
                                                 <option value="90">1:30am</option>
@@ -190,8 +190,60 @@
                                                 <option value="1439">12:00am</option>
                                             </select>
                                         </div>
-                                </span>
+                                    </span>
+                                </div>
                             </div>
+                        </div>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                                <label>Repeats:</label>
+                                <div class="Select Select-block ">
+                                    <select class="select-unstyled selectpicker">
+                                         <option value="3">Daily</option>
+                                         <option value="1">Weekly</option>
+                                         <option value="2">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-inline isolated">
+                                <label class="control-label">Repeats every:</label>
+                                <div class="row">
+                                    <span class="col-xs-12 col-sm-5 form-group">
+                                        <label class="control-label sr-only">week(s)</label>
+                                        <div class="input-group">
+                                            <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control" min="0" step="1" value="1"/>
+                                            <span class="input-group-addon">week(s)</span>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label>On days:</label>
+                                <div class="row">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> <span>Mon </span> 
+                                        </label>
+                                        <label>
+                                            <input type="checkbox"> <span>Tue </span> 
+                                        </label>
+                                        <label>
+                                            <input type="checkbox"> <span>Wed </span> 
+                                        </label>
+                                        <label>
+                                            <input type="checkbox"> <span>Thu </span> 
+                                        </label>
+                                        <label>
+                                            <input type="checkbox"> <span>Fri </span> 
+                                        </label>
+                                        <label>
+                                            <input type="checkbox"> <span>Sat </span> 
+                                        </label>
+                                        <label>
+                                            <input type="checkbox"> <span>Sun </span> 
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
