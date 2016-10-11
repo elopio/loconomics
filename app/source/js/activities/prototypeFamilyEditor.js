@@ -128,7 +128,7 @@ A.prototype.show = function show(state) {
         /*this.viewModel.client.newItem(presetData);*/
         // New client
         this.viewModel.clientVersion(this.app.model.clients.newItem(presetData));
-        this.viewModel.header('Add a client');
+        this.viewModel.header('Add a dog');
         
         // Extra preset data
         if (this.requestData.newForSearchText) {
@@ -229,7 +229,7 @@ function ViewModel(app) {
                 this.isSaving() ? 
                     'Saving changes' : 
                     this.isNew() ?
-                        'Add client' :
+                        'Add dog' :
                         v && v.areDifferent() ?
                             'Save changes' :
                             'Saved'

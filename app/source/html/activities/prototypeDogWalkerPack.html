@@ -203,24 +203,22 @@
                                 <label>Repeats:</label>
                                 <div class="Select Select-block ">
                                     <select class="select-unstyled selectpicker">
-                                         <option value="3">Daily</option>
+                                         <option value="0">Daily</option>
+                                         <option value="3">Once</option>
                                          <option value="1">Weekly</option>
                                          <option value="2">Monthly</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-inline isolated">
+                        </div>
+                        <div class="LightForm-Section">
+                            <div class="row">
                                 <label class="control-label">Repeats every:</label>
-                                <div class="row">
-                                    <span class="col-xs-12 col-sm-5 form-group">
-                                        <label class="control-label sr-only">week(s)</label>
-                                        <div class="input-group">
-                                            <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control" min="0" step="1" value="1"/>
-                                            <span class="input-group-addon">week(s)</span>
-                                        </div>
-                                    </span>
-                                </div>
+                                <input id="serviceProfessionalServiceEditor-durationHours" type="number" class="form-control" min="0" step="1" value="1"/>
+                                <label> week(s)</label>
                             </div>
+                        </div>
+                        <div class="LightForm-Section">
                             <div class="row">
                                 <label>On days:</label>
                                 <div class="row">
@@ -249,13 +247,42 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="LightForm-Section">
                             <div class="row">
                                 <label>Starts on:</label>
                                 <input type="date" class="form-control" placeholder="">
                             </div>
+                        </div>
+                        <div class="LightForm-Section">
                             <div class="row">
-                                <label>Ends on:</label>
-                                        <input id="endson_never" type="radio" class="form-control" placeholder=""><label for="endson_never" title="Ends never">Never</label>
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <label>Ends:</label>
+                                        </th>
+                                        <td>
+                                            <div class="LightForm-InputRow">
+                                            <input id="endson_never" type="radio" class="form-control" placeholder=""><label for="endson_never" title="Ends never">Never</label>
+                                                </div>
+                                            <div class="LightForm-InputRow">
+                                            <input id="endson_count" type="radio" class="form-control" placeholder=""><label for="endson_count" title="After count">After </label>
+                                            <input id="endson_count_occurances" type="number" class="form-control" min="0" step="1" value="1"/>
+                                            <label> occurances</label>
+                                                </div>
+                                            <div class="LightForm-InputRow">
+                                            <input id="endson_date" type="radio" class="form-control" placeholder=""><label for="endson_count" title="After count">On </label>
+                                            <input id="endson_date" type="date" class="form-control"/>
+                                                </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                                <label>Summary: </label>
+                                <strong>Weekly on Monday</strong>
                             </div>
                         </div>
                         <div class="form-group">

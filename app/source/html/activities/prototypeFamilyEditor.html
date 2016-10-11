@@ -20,43 +20,48 @@
                         <app-loading-spinner params="mod: 'row bigger'"></app-loading-spinner>
                     </div>
                     <div data-bind="with: client()">
-                        <app-unlabeled-input params="placeholder: 'First name', value: firstName, disable: $root.isLocked, attr: { readonly: $root.isReadOnly }"></app-unlabeled-input>
-                        <app-unlabeled-input params="placeholder: 'Last name', value: lastName, disable: $root.isLocked, attr: { readonly: $root.isReadOnly }"></app-unlabeled-input>
-                        <div class="form-group">
-                            <div class="input-group" data-bind="css: { 'input-group': $root.validPhone() }">
-                                <input type="tel" class="form-control" data-bind="textInput: phone, disable: $root.isLocked, attr: { readonly: $root.isReadOnly }" placeholder="Mobile phone" aria-label="Mobile phone"/>
-                                <span class="input-group-btn" data-bind="visible: $root.validPhone()">
-                                    <a href="#" data-bind="attr: { href: 'tel:' + $root.validPhone() }" class="btn btn-info">
-                                        <span class="sr-only">Call to this phone</span><span class="fa ion ion-ios-telephone-outline"></span>
-                                    </a>
-                                </span>
+                        <app-unlabeled-input params="placeholder: 'Name', value: firstName, disable: $root.isLocked, attr: { readonly: $root.isReadOnly }"></app-unlabeled-input>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                                <label>Breed: </label>
+                                <div class="Select Select-block ">
+                                    <select class="select-unstyled selectpicker">
+                                            <option value="4">Labrador</option>
+                                            <option value="5">German Shepherd</option>
+                                            <option value="6">Golden Retriever</option>
+                                            <option value="6">Bulldog</option>
+                                            <option value="6">Beagle</option>
+                                            <option value="6">French Bulldog</option>
+                                            <option value="6">Yorkshire Terrier</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" data-bind="checked: canReceiveSms, disable: $root.isLocked() || $root.isReadOnly()" />
-                                Can receive SMS
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group" data-bind="css: { 'input-group': $root.validEmail() }">
-                                <input type="email" class="form-control"
-                                     data-bind="textInput: email, disable: $root.isLocked, attr: { readonly: $root.isReadOnly }"
-                                     placeholder="Email" aria-label="Email" />
-                                <span class="input-group-btn" data-bind="visible: $root.validEmail()">
-                                    <a href="#" data-bind="attr: { href: 'mailto:' + $root.validEmail() }" class="btn btn-info">
-                                        <span class="sr-only">Write e-mail</span>
-                                        <span class="fa ion ion-ios-at-outline"></span></a>
-                                </span>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                                <label>Size: </label>
+                                <div class="Select Select-block ">
+                                    <select class="select-unstyled selectpicker">
+                                            <option value="4">Small (0-15lbs)</option>
+                                            <option value="5">Medium (16-40lbs)</option>
+                                            <option value="6">Large (41-100lbs)</option>
+                                            <option value="6">Giant (101+lbs)</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <select class="form-control" data-bind="value: $root.selectedBirthMonth, options: $root.months, optionsText: 'name', optionsCaption: 'Birth Month (optional)', disable: $root.isLocked() || $root.isReadOnly(), valueAllowUnset: true"></select>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                                <label>Birth Date: </label>
+                                <input type="date" class="form-control" placeholder="">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <select class="form-control" data-bind="value: birthMonthDay, options: $root.monthDays, optionsCaption: 'Birth Day (optional)', disable: $root.isLocked() || $root.isReadOnly(), valueAllowUnset: true"></select>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                                <label>Notes about Dog: </label>
+                                <textarea class="form-control" data-bind="textInput: notesAboutClient, disable: $root.isLocked" placeholder="Notes about dog (only seen by you)"></textarea>
+                            </div>
                         </div>
-                        <textarea class="form-control" data-bind="textInput: notesAboutClient, disable: $root.isLocked" placeholder="Notes about client (only seen by you)"></textarea>
                     </div>
                     <div class="LightForm-submitBar">
                         <button type="submit" class="btn btn-primary btn-block" data-bind="text: submitText, disable: $root.isLocked() || !unsavedChanges(), css: { 'btn-danger': isSaving() }"></button>
