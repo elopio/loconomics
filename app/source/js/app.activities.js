@@ -92,5 +92,7 @@ module.exports = {
     'prototypePsychotherapist': require('./activities/prototypePsychotherapist'),
     'aboutMe': require('./activities/aboutMe'),
     'onboardingSuccess': require('./activities/onboardingSuccess'),
-    'prototypeDogWalkerPack': require('./activities/prototypeDogWalkerPack')
+    'prototypeDogWalkerPack': require('./activities/prototypeDogWalkerPack'),
+    'prototypeMeetAndGreet': require('./activities/prototypeMeetAndGreet'),
+    'prototypeFamilyEditor': require('./activities/prototypeFamilyEditor')
 };
