@@ -1,10 +1,10 @@
 /**
-    UserFees activity
+    prototypeHouseSitterServiceEditorActivity activity
 **/
 'use strict';
 
 var Activity = require('../components/Activity');
-var A = Activity.extend(function mockupServiceConsultationEditorActivity() {
+var A = Activity.extend(function prototypeHouseSitterServiceEditorActivity() {
 
     Activity.apply(this, arguments);
 

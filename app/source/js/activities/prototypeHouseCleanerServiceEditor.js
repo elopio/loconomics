@@ -4,7 +4,7 @@
 'use strict';
 
 var Activity = require('../components/Activity');
-var A = Activity.extend(function mockupBabySitterServiceEditorActivity() {
+var A = Activity.extend(function prototypeHouseCleanerServiceEditorActivity() {
 
     Activity.apply(this, arguments);
 

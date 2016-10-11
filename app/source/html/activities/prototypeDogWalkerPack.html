@@ -1,5 +1,5 @@
-<!-- Activity mockupDogWalkerPack -->
-<div data-activity="mockupDogWalkerPack" class="Boxes-sm animated">
+<!-- Activity prototypeDogWalkerPack -->
+<div data-activity="prototypeDogWalkerPack" class="Boxes-sm animated">
     <app-inline-user-menu>@render('parts/UserMenuContents.html')</app-inline-user-menu>
     <div class="container">
         <div class="row">  
@@ -17,7 +17,7 @@
                     </h2>                       
                     <div class="form-inline isolated">
                         <label>Name your pack</label>
-                        <input type="text" class="form-control" placeholder="Type the name of the service, e.g. Weekly cleaning">             
+                        <input type="text" class="form-control" placeholder="Type the name of the pack, e.g. Mission Pups">             
                     </div>
                         <div class="LightForm-Section">
                             <div class="row">
@@ -30,15 +30,19 @@
                                          <option value="4">Certain clients only</option>
                                     </select>
                                 </div>
-<!--
-                                <div class="select select-block ">
+                            </div>
+                        </div>
+                        <div class="LightForm-Section">
+                            <div class="row">
+                            <label>Which clients?</label>
+                                <div class="Select Select-block ">
                                     <select class="select-unstyled selectpicker">
-                                            <option value="4">Joshua Danielson</option>
-                                            <option value="5">Iago Lorenzo</option>
-                                            <option value="6">Juan Sanchez</option>
+                                            <option value="4">Joshua Danielson's dog Fido</option>
+                                            <option value="5">Joshua Danielson's dog Buster</option>
+                                            <option value="6">Juan Sanchez's dog Rover</option>
+                                            <option value="6">Add new dog</option>
                                     </select>
                                 </div>
--->
                             </div>
                         </div>
                         <div class="LightForm-Section">
@@ -244,6 +248,14 @@
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <label>Starts on:</label>
+                                <input type="date" class="form-control" placeholder="">
+                            </div>
+                            <div class="row">
+                                <label>Ends on:</label>
+                                        <input id="endson_never" type="radio" class="form-control" placeholder=""><label for="endson_never" title="Ends never">Never</label>
                             </div>
                         </div>
                         <div class="form-group">

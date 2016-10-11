@@ -86,7 +86,7 @@ function testdata() {
 
 
 var Model = require('../models/Model');
-// TODO Incomplete Model for UI mockup
+// TODO Incomplete Model for UI prototype
 function UserBackgroundCheck(values) {
     Model(this);
     

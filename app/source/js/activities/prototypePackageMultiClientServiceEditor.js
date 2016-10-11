@@ -4,7 +4,7 @@
 'use strict';
 
 var Activity = require('../components/Activity');
-var A = Activity.extend(function mockupPackageEditorActivity() {
+var A = Activity.extend(function prototypePackageMultiClientServiceEditorActivity() {
 
     Activity.apply(this, arguments);
 

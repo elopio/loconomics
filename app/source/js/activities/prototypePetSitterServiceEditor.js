@@ -1,10 +1,10 @@
 /**
-    mockupHouseSitterServiceEditorActivity activity
+    prototypePetSitterServiceEditorActivity activity
 **/
 'use strict';
 
 var Activity = require('../components/Activity');
-var A = Activity.extend(function mockupHouseSitterServiceEditorActivity() {
+var A = Activity.extend(function prototypePetSitterServiceEditorActivity() {
 
     Activity.apply(this, arguments);
 
