@@ -94,5 +94,6 @@ module.exports = {
     'onboardingSuccess': require('./activities/onboardingSuccess'),
     'prototypeDogWalkerPack': require('./activities/prototypeDogWalkerPack'),
     'prototypeMeetAndGreet': require('./activities/prototypeMeetAndGreet'),
-    'prototypeFamilyEditor': require('./activities/prototypeFamilyEditor')
+    'prototypeFamilyEditor': require('./activities/prototypeFamilyEditor'),
+    'prototypeServiceProfessionalService': require('./activities/prototypeServiceProfessionalService')
 };
