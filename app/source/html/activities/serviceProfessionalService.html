@@ -27,10 +27,12 @@
                     <app-loading-spinner params="mod: 'row bigger'"></app-loading-spinner>
                 </div>
                 <app-job-titles-list params="jobTitles: jobTitles.userJobProfile, selectJobTitle: jobTitles.selectJobTitle" data-bind="visible: jobTitleID() === 0"></app-job-titles-list>
+                <h2 class="SectionTitle">Your Massage Therapist Pricing</h2>
+                <h3>Available to everyone</h3>
                 <div data-bind="foreach: groupedServices">
-                    <h2 class="SectionTitle" data-bind="visible: !$root.isAdditionMode()">
+                    <h4 data-bind="visible: !$root.isAdditionMode()">
                         <span data-bind="text: group"></span>
-                    </h2>
+                    </h4>
                     <ul class="TilesList" data-bind="foreach: pricing">
                         <li>
                             <a href="#" class="ItemTile" data-bind="click: $root.tapService" role="button">
@@ -54,6 +56,15 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+                <h3>Available to existing clients only</h3>
+                <p>You have no pricing for existing clients only</p>
+                <h3>Available to first-time clients only</h3>
+                <p>You have no pricing for first-time clients only</p>
+                <h3>Your private pricing</h3>
+                <p>You have no private pricing</p>
+                <h2 class="SectionTitle">Add new pricing</h2>
+                <div data-bind="foreach: groupedServices">
                     <a class="CompactLinkTile" type="button" href="#!serviceProfessionalServiceEditor/" data-bind="click: $root.tapNewService">
                         <div class="Tile-content text-muted"data-bind="text: type() && type().addNewLabel()"></div>
                         <div class="Tile-icon text-muted">
@@ -63,8 +74,47 @@
                 </div>
                 <div class="isolated inset" data-bind="visible: (onboardingNextReady() || isSelectionMode()) && jobTitleID() !== 0">
                     <button type="button" class="btn btn-primary btn-block" data-bind="event: { click: endSelection }, text: submitText, disable: isLocked">Save</button>
+                </div>           
+<!--                <div data-bind="visible: visibleToClientID() > 0"-->
+                <h2 class="SectionTitle">Joshua's Massage Therapist Pricing</h2>
+                <div data-bind="foreach: groupedServices">
+                    <h4 data-bind="visible: !$root.isAdditionMode()">
+                        <span data-bind="text: group"></span>
+                    </h4>
+                    <ul class="TilesList" data-bind="foreach: pricing">
+                        <li>
+                            <a href="#" class="ItemTile" data-bind="click: $root.tapService" role="button">
+                                <div class="Tile-marker">
+                                    <p data-bind="text: displayedPrice"></p>
+                                </div>
+                                <div class="Tile-content">
+                                    <div data-bind="visible: sessionsAndDuration(), text: name"></div>
+                                    <em data-bind="visible: sessionsAndDuration(), text: sessionsAndDuration"></em>
+                                    <p data-bind="visible: !sessionsAndDuration(), text: name"></p>
+                                </div>
+                                <div class="Tile-icon">
+                                    <span data-bind="visible: $root.isSelectionMode, attr: { 'aria-pressed': isSelected }" role="button">
+                                        <span class="fa ion" data-bind="css: { 'ion-android-checkbox-outline': isSelected, 'ion-android-checkbox-outline-blank': !isSelected() }"></span>
+                                        <span class="sr-only">Selected?</span>
+                                    </span>
+                                    <span data-bind="visible: !$root.isSelectionMode()"><span class="fa ion ion-edit"></span>
+                                        <span class="sr-only">Edit</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+                <h2 class="SectionTitle">Add new pricing for Joshua</h2>
+                <div data-bind="foreach: groupedServices">
+                    <a class="CompactLinkTile" type="button" href="#!serviceProfessionalServiceEditor/" data-bind="click: $root.tapNewService">
+                        <div class="Tile-content text-muted"data-bind="text: type() && type().addNewLabel()"></div>
+                        <div class="Tile-icon text-muted">
+                         <span class="fa ion ion-plus"></span>
+                        </div>
+                    </a>
+                </div>
+            </div> 
             <div class="SideMenu hidden-xs hidden-sm col-md-3 col-md-offset-1">
                 <app-inline-side-menu params="vocElement: 'scheduling', helpLink: helpLink"></app-inline-side-menu>
             </div>
