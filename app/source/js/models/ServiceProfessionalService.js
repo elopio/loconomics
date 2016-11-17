@@ -111,6 +111,10 @@ function ServiceProfessionalService(values) {
     
     
     /// Visual representation of several fields
+    this.visibilityCategoryName = ko.pureComputed(function() {
+        // TODO: create actual field
+        return 'Everyone';
+    }, this);
     
     this.durationText = ko.pureComputed(function() {
         var minutes = this.serviceDurationMinutes() || 0;
