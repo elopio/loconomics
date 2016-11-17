@@ -39,7 +39,7 @@
                         <span data-bind="text: $root.servicePrefix() + label"></span>
                     </h2>
                     <!-- ko foreach: visibilityCategories -->
-                        <h3 data-bind="text: 'Available to ' + label"></h3>
+                        <h3 class="TileListTitle" data-bind="text: 'For ' + label"></h3>
                         <ul class="TilesList" data-bind="foreach: pricings">
                             <li>
                                 <a href="#" class="ItemTile" data-bind="click: $root.tapService" role="button">
@@ -62,8 +62,10 @@
                                     </div>
                                 </a>
                             </li>
-                        </ul>
-                        <p data-bind="visible: pricings.length == 0">(There are no pricings available for <span data-bind="text: label.toLocaleLowerCase()"></span>)</p>
+
+
+                    </ul>
+                    <p class="TileListPlaceholder" data-bind="visible: pricings.length == 0">(None)</p>
                     <!-- /ko --> <!-- visibility category -->
                 </div> <!-- grouped service -->
 

@@ -8,6 +8,13 @@
 **/
 @import 'Tile.styl'
 
+.TileListTitle {
+    font-size: $font-size-base;
+    margin-bottom: 5px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
 .TilesList {
     padding: 0;
     list-style: none;
@@ -36,5 +43,15 @@
         > *:last-child::after {
             border-bottom: none !important;
         }
+    }
+}
+
+.TileListPlaceholder {
+    font-size: $font-size-base - 2px;
+    font-style: italic;
+    line-height: $font-size-base;
+
+    @media $mediaMinMd {
+        font-size: $font-size-base;
     }
 }
