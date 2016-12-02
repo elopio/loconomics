@@ -6,10 +6,9 @@
 'use strict';
 
 var ko = require('knockout'),
-    groupBy = require('../utils/groupBy'),
     $ = require('jquery'),
     Activity = require('../components/Activity'),
-    PricingVisibility = require('../models/PricingVisibility.js');
+    GroupedServicesPresenter = require('../utils/GroupedServicesPresenter');
 
 var A = Activity.extend(function ServiceProfessionalServiceActivity() {
 
@@ -224,51 +223,6 @@ A.prototype.show = function show(options) {
 
 var UserJobProfile = require('../viewmodels/UserJobProfile');
 
-// For a given pricing type and optional pricings, returns a 
-// service object with pricings sorted by client visibility.
-// TODO: move this to a model.
-var service = function(pricingType, pricings) {
-    var pricingsByVisibilityCategory = function(pricings) {
-        var categoryNames = (new PricingVisibility()).publicCategoryNames(),
-            groupedPricings = groupBy(pricings, function(p) { return p.visibilityCategoryName(); }, categoryNames); 
-
-        return Object.keys(groupedPricings).map(function(categoryName) {
-            return {
-              label: categoryName,
-              pricings: groupedPricings[categoryName]
-            };
-        });
-    };
-
-    return {
-        label: pricingType().pluralName() || 'Services',
-        type: pricingType,
-        pricings: pricings,
-        visibilityCategories: pricingsByVisibilityCategory(pricings)
-    };
-};
-
-// For list of pricing types and optional pricings, returns service objects
-var servicesGroupedByType = function(pricingTypes, pricings) {
-    var pricingTypesByID = pricingTypes.reduce(function(obj, type) {
-            obj[type().pricingTypeID()] = type;
-            return obj;
-        }, {}),
-        defaultTypeIDs = Object.keys(pricingTypesByID),
-        pricingsByTypeID = groupBy(pricings, function(pricing) { return pricing.pricingTypeID(); }, defaultTypeIDs);
-
-    return Object.keys(pricingsByTypeID).map(function(pricingTypeID) {
-            var pricings = pricingsByTypeID[pricingTypeID],
-                pricingType = pricingTypesByID[pricingTypeID];
-
-            return service(pricingType, pricings);
-    });
-};
-
-var sortServicesByPricings = function(a, b) {
-  return b.pricings.length - a.pricings.length;
-};
-
 function ViewModel(app) {
     // jshint maxstatements:100
     this.helpLink = '/help/relatedArticles/201967166-listing-and-pricing-your-services';
@@ -322,9 +276,9 @@ function ViewModel(app) {
     this.groupedServices = ko.computed(function() {
         var pricings = this.isAdditionMode() ? [] : this.list(),
             pricingTypes = this.pricingTypes(),
-            services = pricingTypes.length > 0 ? servicesGroupedByType(pricingTypes, pricings) : [];
+            services = pricingTypes.length > 0 ? GroupedServicesPresenter.servicesGroupedByType(pricingTypes, pricings) : [];
 
-        return services.sort(sortServicesByPricings);
+        return services.sort(GroupedServicesPresenter.sortServicesByPricings);
     }, this);
 
     this.servicePrefix = function() {
