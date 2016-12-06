@@ -57,28 +57,30 @@
                             <select class="form-control" data-bind="value: birthMonthDay, options: $root.monthDays, optionsCaption: 'Birth Day (optional)', disable: $root.isLocked() || $root.isReadOnly(), valueAllowUnset: true"></select>
                         </div>
                         <textarea class="form-control" data-bind="textInput: notesAboutClient, disable: $root.isLocked" placeholder="Notes about client (only seen by you)"></textarea>
-                    </div><h2 class="SectionTitle" data-bind="">
-                        <span data-bind="">What would you like to do?</span>
-                    </h2>
-                    <ul class="TilesList" data-bind="">
-                        <li>
-                            <a href="#" class="ItemTile" data-bind="" role="button">
-                                <div class="Tile-content" data-bind="">View/edit Joshua's special pricing</div>
-                                <p data-bind="">6 services</p>
+                    </div>
+                    <!-- ko if: client() -->
+                    <h2 class="SectionTitle" data-bind="text: 'Special Services for ' + client().firstName()"></h2>
+                    <ul class="TilesList" data-bind="foreach: clientServicesByJobTitle">
+                        <li data-bind="if: hasServices">
+                            <a href="#" class="ItemTile" data-bind="click: $root.tapManagePricing" role="button">
+                                <div class="Tile-content" data-bind="text: jobTitle.singularName + 'special pricing'"></div>
+                                <p data-bind="text: summary"></p>
                                 <div class="Tile-icon text-muted">
                                  <span class="fa ion ion-ios-arrow-forward"></span>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="ItemTile" data-bind="" role="button">
-                                <div class="Tile-content text-muted" data-bind="">Add special pricing for Joshua</div>
+                        <li data-bind="ifnot: hasServices">
+                            <a href="#" class="ItemTile" data-bind="click: $root.tapAddPricing" role="button">
+                                <div class="Tile-content text-muted" data-bind="text: 'Add special pricing for ' + $root.client().firstName()"></div>
+                                <p>(None yet)
                                 <div class="Tile-icon text-muted">
                                  <span class="fa ion ion-plus"></span>
                                 </div>
                             </a>
                         </li>
                     </ul>
+                    <!-- /ko -->
                     <div class="LightForm-submitBar">
                         <button type="submit" class="btn btn-primary btn-block" data-bind="text: submitText, disable: $root.isLocked() || !unsavedChanges(), css: { 'btn-danger': isSaving() }"></button>
                         <button type="button" class="btn btn-danger btn-block" data-bind="text: deleteText, disable: $root.isLocked(), event: { click: confirmRemoval }, visible: !isNew()"></button>
@@ -90,4 +92,4 @@
             </div>
         </div>
     </div>
-</div>  
+</div>

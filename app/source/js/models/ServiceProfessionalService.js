@@ -6,7 +6,8 @@
 
 var Model = require('./Model'),
     ko = require('knockout'),
-    numeral = require('numeral');
+    numeral = require('numeral'),
+    PricingVisibility = require('../models/PricingVisibility.js');
 
 function ServiceProfessionalService(values) {
     
@@ -113,7 +114,10 @@ function ServiceProfessionalService(values) {
     /// Visual representation of several fields
     this.visibilityCategoryName = ko.pureComputed(function() {
         // TODO: create actual field
-        return 'Everyone';
+        var names = (new PricingVisibility()).publicCategoryNames(),
+            id = this.serviceProfessionalServiceID();
+
+        return names[id % names.length];
     }, this);
     
     this.durationText = ko.pureComputed(function() {

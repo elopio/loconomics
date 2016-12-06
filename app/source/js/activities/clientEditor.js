@@ -3,8 +3,9 @@
 **/
 'use strict';
 
-var Activity = require('../components/Activity');
-var is = require('is_js');
+var Activity = require('../components/Activity'),
+    is = require('is_js'),
+    GroupedServicesPresenter = require('../utils/GroupedServicesPresenter');
 
 var A = Activity.extend(function ClientEditionActivity() {
     
@@ -40,7 +41,25 @@ var A = Activity.extend(function ClientEditionActivity() {
             }
         }.bind(this)
     });
-    
+
+// workline: try to get this to load. Just listening to the *.list does not load the data.
+// call this.app.model.userJobProfile.syncList
+
+    this.registerHandler({
+        target: this.app.model.userJobProfile.list,
+        handler: function (list) {
+            console.log('handler: userjobprofile', list);
+            this.viewModel.userJobProfile(list);
+        }.bind(this)
+    });
+
+    this.registerHandler({
+        target: this.app.model.pricingTypes.list,
+        handler: function (list) {
+            this.viewModel.pricingTypes(list);
+        }.bind(this)
+    });
+
     // Special treatment of the save operation
     this.viewModel.onSave = function(clientID) {
         if (this.requestData.returnNewAsSelected === true) {
@@ -75,6 +94,9 @@ A.prototype.show = function show(state) {
     
     // reset
     this.viewModel.clientID(0);
+
+// try this.
+this.app.model.userJobProfile.syncList();
     
     this.updateNavBarState();
 
@@ -195,6 +217,91 @@ function ViewModel(app) {
         return null;
     }, this);
     //this.client = app.model.clients.createWildcardItem();
+
+    this.userJobProfile = ko.observableArray([]);
+    this.jobTitles = ko.observableArray([]);
+    this.pricingTypes = ko.observableArray([]);
+
+    // when the user job profile changes, load all job titles held by user
+    this.userJobProfile.subscribe(function(userJobTitles) {
+        var jobTitles = [],
+            jobTitlePromises = userJobTitles.map(function(userJobTitle) {
+                console.log('updating user job title', userJobTitle);
+                return app.model.jobTitles.getJobTitle(userJobTitle.jobTitleID()).
+                       then(function(jobTitle) { 
+                            jobTitles.push(jobTitle);
+                        });
+            }), 
+            pricingTypesPromise = app.model.pricingTypes.getList(),
+            loadPromises = jobTitlePromises.concat([pricingTypesPromise]);
+
+        Promise.all(loadPromises)
+        .then(function() {
+            var servicesPromises = jobTitles.map(function(jobTitle) {
+                return app.model.serviceProfessionalServices.getList(jobTitle.jobTitleID())
+                        .then(function(services) {
+//! do the filtering here for this client
+                            console.log('loaded services', services);
+                            jobTitle.servicesForClient = app.model.serviceProfessionalServices.asModel(services);
+                        });
+            });
+
+            Promise.all(servicesPromises).then(function() {
+                this.jobTitles(jobTitles);
+            }.bind(this))
+            .catch(this.showLoadingError);
+        }.bind(this))
+        .catch(this.showLoadingError); //! not defined yet
+    }, this);
+
+    this.showLoadingError = function(err) {
+/// THIS IS BREAKING... THIS ISN"T defined?!
+        this.app.modals.showError({
+
+            title: 'There was an error while loading.',
+            error: err
+        }.bind(this));
+    };
+
+    this.clientServicesByJobTitle = ko.pureComputed(function() {
+        console.log('update client services by job title', this.jobTitles().length);
+        return this.jobTitles().map(function(jobTitle) {
+            var jobTitlePricingTypes = (jobTitle() && jobTitle().pricingTypes()) || [],
+
+                pricingTypes = jobTitlePricingTypes.map(function(jobTitlePricingType) {
+                    return app.model.pricingTypes.getObservableItem(jobTitlePricingType.pricingTypeID());
+                }),
+
+                services = pricingTypes.length > 0 ? GroupedServicesPresenter.servicesGroupedByType(pricingTypes, jobTitle.servicesForClient) : [],
+
+                sortedServices = services.sort(GroupedServicesPresenter.sortServicesByPricings);
+
+/*
+  clientServicesByJobTitle: 
+    { 
+      jobTitle,
+      summary: string derived from services property
+      hasServices() => derived from length of services
+      services: []
+    }
+  ]
+*/
+            return {
+              jobTitle: jobTitle,
+              summary: sortedServices.map(function(s) { return s.pricings.length + ' ' + s.label; }).join(', '),
+              hasServices: sortedServices.length > 0,
+              services: sortedServices
+            };
+        });
+    }, this);
+
+    this.tapManagePricing = function(clientServicesByJobTitle) {
+        return clientServicesByJobTitle.jobTitle; //! navigate to the manage screen
+    };
+
+    this.tapAddPricing = function(clientServicesByJobTitle) {
+        return clientServicesByJobTitle.jobTitle; //! navigate to sps editor
+    };
 
     this.header = ko.observable('');
     
