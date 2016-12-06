@@ -23,10 +23,13 @@ var service = function(pricingType, pricings) {
         });
     };
 
+    var pluralLabel = pricingType().pluralName() || 'Services';
+
     return {
-        label: pricingType().pluralName() || 'Services',
+        label: pricings.length == 1 ? pricingType().singularName() : pluralLabel,
         type: pricingType,
         pricings: pricings,
+        pluralLabel: pluralLabel,
         visibilityCategories: pricingsByVisibilityCategory(pricings)
     };
 };
@@ -36,7 +39,8 @@ var service = function(pricingType, pricings) {
   services: [
     { label, 
       type, 
-      pricings: [], 
+      pricings: [],
+      pluralLabel,
       visibilityCategories: [
         {
           label,

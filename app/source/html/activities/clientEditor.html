@@ -63,8 +63,10 @@
                     <ul class="TilesList" data-bind="foreach: clientServicesByJobTitle">
                         <li data-bind="if: hasServices">
                             <a href="#" class="ItemTile" data-bind="click: $root.tapManagePricing" role="button">
-                                <div class="Tile-content" data-bind="text: jobTitle.singularName + 'special pricing'"></div>
-                                <p data-bind="text: summary"></p>
+                                <div class="Tile-content">
+                                    <div data-bind="text: jobTitle.singularName() + ' special pricing'"></div>
+                                    <em data-bind="text: summary"></em>
+                                </div>
                                 <div class="Tile-icon text-muted">
                                  <span class="fa ion ion-ios-arrow-forward"></span>
                                 </div>
@@ -72,8 +74,7 @@
                         </li>
                         <li data-bind="ifnot: hasServices">
                             <a href="#" class="ItemTile" data-bind="click: $root.tapAddPricing" role="button">
-                                <div class="Tile-content text-muted" data-bind="text: 'Add special pricing for ' + $root.client().firstName()"></div>
-                                <p>(None yet)
+                                <div class="Tile-content text-muted" data-bind="text: 'Add ' + jobTitle.singularName() + ' special pricing for ' + $root.client().firstName()"></div>
                                 <div class="Tile-icon text-muted">
                                  <span class="fa ion ion-plus"></span>
                                 </div>

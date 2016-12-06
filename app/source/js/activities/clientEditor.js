@@ -226,9 +226,8 @@ function ViewModel(app) {
     this.userJobProfile.subscribe(function(userJobTitles) {
         var jobTitles = [],
             jobTitlePromises = userJobTitles.map(function(userJobTitle) {
-                console.log('updating user job title', userJobTitle);
                 return app.model.jobTitles.getJobTitle(userJobTitle.jobTitleID()).
-                       then(function(jobTitle) { 
+                       then(function(jobTitle) {
                             jobTitles.push(jobTitle);
                         });
             }), 
@@ -241,7 +240,6 @@ function ViewModel(app) {
                 return app.model.serviceProfessionalServices.getList(jobTitle.jobTitleID())
                         .then(function(services) {
 //! do the filtering here for this client
-                            console.log('loaded services', services);
                             jobTitle.servicesForClient = app.model.serviceProfessionalServices.asModel(services);
                         });
             });
@@ -251,48 +249,44 @@ function ViewModel(app) {
             }.bind(this))
             .catch(this.showLoadingError);
         }.bind(this))
-        .catch(this.showLoadingError); //! not defined yet
+        .catch(this.showLoadingError);
     }, this);
 
     this.showLoadingError = function(err) {
-/// THIS IS BREAKING... THIS ISN"T defined?!
-        this.app.modals.showError({
-
+        app.modals.showError({
             title: 'There was an error while loading.',
             error: err
-        }.bind(this));
-    };
+        });
+    }.bind(this);
 
     this.clientServicesByJobTitle = ko.pureComputed(function() {
-        console.log('update client services by job title', this.jobTitles().length);
-        return this.jobTitles().map(function(jobTitle) {
-            var jobTitlePricingTypes = (jobTitle() && jobTitle().pricingTypes()) || [],
+        var hasPricings = function(s) { return s.pricings.length > 0; },
+            summarize = function(s) { return s.pricings.length + ' ' + s.label.toLowerCase(); },
+            byPricingsLength = function(a, b) { return a.pricings.length < b.pricings.length; },
 
-                pricingTypes = jobTitlePricingTypes.map(function(jobTitlePricingType) {
-                    return app.model.pricingTypes.getObservableItem(jobTitlePricingType.pricingTypeID());
-                }),
+            jobTitles = this.jobTitles().map(function(jobTitle) {
+                var jobTitlePricingTypes = (jobTitle.pricingTypes()) || [],
 
-                services = pricingTypes.length > 0 ? GroupedServicesPresenter.servicesGroupedByType(pricingTypes, jobTitle.servicesForClient) : [],
+                    pricingTypes = jobTitlePricingTypes.map(function(jobTitlePricingType) {
+                        return app.model.pricingTypes.getObservableItem(jobTitlePricingType.pricingTypeID());
+                    }),
 
-                sortedServices = services.sort(GroupedServicesPresenter.sortServicesByPricings);
+                    pricings = jobTitle.servicesForClient,
 
-/*
-  clientServicesByJobTitle: 
-    { 
-      jobTitle,
-      summary: string derived from services property
-      hasServices() => derived from length of services
-      services: []
-    }
-  ]
-*/
-            return {
-              jobTitle: jobTitle,
-              summary: sortedServices.map(function(s) { return s.pricings.length + ' ' + s.label; }).join(', '),
-              hasServices: sortedServices.length > 0,
-              services: sortedServices
-            };
-        });
+                    services = pricingTypes.length > 0 ? GroupedServicesPresenter.servicesGroupedByType(pricingTypes, pricings) : [],
+
+                    sortedServices = services.sort(GroupedServicesPresenter.sortServicesByPricings);
+
+                return {
+                  jobTitle: jobTitle,
+                  summary: sortedServices.filter(hasPricings).map(summarize).join(', '),
+                  hasServices: pricings.length > 0,
+                  pricings: pricings,
+                  services: sortedServices
+                };
+            });
+
+        return jobTitles.sort(byPricingsLength);
     }, this);
 
     this.tapManagePricing = function(clientServicesByJobTitle) {
