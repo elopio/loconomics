@@ -32,6 +32,7 @@ function ServiceProfessionalService(values) {
         isPhone: false,
         // Array of integers, IDs of serviceAttributes
         serviceAttributes: [],
+        visibleToClientID: 0,
         createdDate: null,
         updatedDate: null
     }, values);
@@ -110,16 +111,15 @@ function ServiceProfessionalService(values) {
         owner: this
     });
     
-    
     /// Visual representation of several fields
     this.visibilityCategoryName = ko.pureComputed(function() {
-        // TODO: create actual field
-        var names = (new PricingVisibility()).publicCategoryNames(),
-            id = this.serviceProfessionalServiceID();
-
-        return names[id % names.length];
+        return (new PricingVisibility()).categoryNameByID(this.visibleToClientID());
     }, this);
-    
+
+    this.isSpecificToClient= function(id) {
+        return id == this.visibleToClientID();
+    };
+
     this.durationText = ko.pureComputed(function() {
         var minutes = this.serviceDurationMinutes() || 0;
         // TODO: l10n
