@@ -24,6 +24,10 @@ function PricingVisibility() {
     this.categoryNameByID = function(id) {
         return namesByID[id] || names.specificClient;
     };
+
+    this.isClientSpecific = function(visibleToClientID) {
+        return visibleToClientID > 0;
+    };
 }
 
 module.exports = PricingVisibility;

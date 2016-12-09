@@ -274,7 +274,7 @@ function ViewModel(app) {
     }, this);
 
     this.groupedServices = ko.computed(function() {
-        var pricings = this.isAdditionMode() ? [] : this.list(),
+        var pricings = this.isAdditionMode() ? [] : this.list().filter(function(pricing) { return !pricing.isClientSpecific(); }),
             pricingTypes = this.pricingTypes(),
             services = pricingTypes.length > 0 ? GroupedServicesPresenter.servicesGroupedByType(pricingTypes, pricings) : [];
 

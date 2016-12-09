@@ -116,8 +116,12 @@ function ServiceProfessionalService(values) {
         return (new PricingVisibility()).categoryNameByID(this.visibleToClientID());
     }, this);
 
-    this.isSpecificToClient= function(id) {
+    this.isSpecificToClient = function(id) {
         return id == this.visibleToClientID();
+    };
+
+    this.isClientSpecific = function() {
+        return (new PricingVisibility()).isClientSpecific(this.visibleToClientID());
     };
 
     this.durationText = ko.pureComputed(function() {
