@@ -42,13 +42,9 @@ var A = Activity.extend(function ClientEditionActivity() {
         }.bind(this)
     });
 
-// workline: try to get this to load. Just listening to the *.list does not load the data.
-// call this.app.model.userJobProfile.syncList
-
     this.registerHandler({
         target: this.app.model.userJobProfile.list,
         handler: function (list) {
-            console.log('handler: userjobprofile', list);
             this.viewModel.userJobProfile(list);
         }.bind(this)
     });
@@ -95,8 +91,7 @@ A.prototype.show = function show(state) {
     // reset
     this.viewModel.clientID(0);
 
-// try this.
-this.app.model.userJobProfile.syncList();
+    this.app.model.userJobProfile.syncList();
     
     this.updateNavBarState();
 
@@ -107,7 +102,7 @@ this.app.model.userJobProfile.syncList();
     
     if (clientID) {
         this.viewModel.clientID(clientID);
-        
+//!
         /*this.viewModel.client.sync(clientID)
         .catch(function (err) {
             this.app.modals.showError({
@@ -224,6 +219,7 @@ function ViewModel(app) {
 
     // when the user job profile changes, load all job titles held by user
     this.userJobProfile.subscribe(function(userJobTitles) {
+        /* jshint -W098 */
         var jobTitles = [],
             jobTitlePromises = userJobTitles.map(function(userJobTitle) {
                 return app.model.jobTitles.getJobTitle(userJobTitle.jobTitleID()).
@@ -232,15 +228,17 @@ function ViewModel(app) {
                         });
             }), 
             pricingTypesPromise = app.model.pricingTypes.getList(),
-            loadPromises = jobTitlePromises.concat([pricingTypesPromise]);
-
+            loadPromises = jobTitlePromises.concat([pricingTypesPromise]),
+            clientID = this.clientID();
+        /* jshint +W098 */
         Promise.all(loadPromises)
         .then(function() {
             var servicesPromises = jobTitles.map(function(jobTitle) {
                 return app.model.serviceProfessionalServices.getList(jobTitle.jobTitleID())
                         .then(function(services) {
-//! do the filtering here for this client
-                            jobTitle.servicesForClient = app.model.serviceProfessionalServices.asModel(services);
+                            jobTitle.servicesForClient = app.model.serviceProfessionalServices.asModel(services).filter(function(service) {
+                                return service.isSpecificToClient(clientID);
+                            });
                         });
             });
 
@@ -289,12 +287,28 @@ function ViewModel(app) {
         return jobTitles.sort(byPricingsLength);
     }, this);
 
-    this.tapManagePricing = function(clientServicesByJobTitle) {
-        return clientServicesByJobTitle.jobTitle; //! navigate to the manage screen
-    };
+    this.tapManagePricing = function() {
+// param: clientServicesByJobTitle
+//! navigate to the manage screen
+// workline
+        var request = {
+                title: '' // set navbar title: requestData.title
+            },
+            url = ''; // build from clientServicesByJobTitle.jobTitle, include mustReturn set to this URL
+/*
+  Sample URL:
+serviceProfessionalService/14?mustReturn=jobtitles/14&returnText=Housecleaner Scheduler
+*/
+
+        app.shell.go(url, request);
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+    }.bind(this);
 
     this.tapAddPricing = function(clientServicesByJobTitle) {
-        return clientServicesByJobTitle.jobTitle; //! navigate to sps editor
+//! navigate to sps editor
+        return clientServicesByJobTitle.jobTitle;
     };
 
     this.header = ko.observable('');
