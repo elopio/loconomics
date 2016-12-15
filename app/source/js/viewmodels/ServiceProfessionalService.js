@@ -10,10 +10,9 @@ var ko = require('knockout'),
 var EventEmitter = require('events').EventEmitter;
 
 function ServiceProfessionalServiceViewModel(app) {
-    
+    // jshint maxstatements:100
     EventEmitter.call(this);
 
-    this.isLoading = ko.observable(false);
     this.list = ko.observableArray([]);
     this.jobTitleID = ko.observable(0);
     // 0 to load current user pricing and allow edit
@@ -29,6 +28,19 @@ function ServiceProfessionalServiceViewModel(app) {
     // Add activity requestData to keep progress/navigation on links
     this.requestData = ko.observable();
     this.cancelLink = ko.observable(null);
+    // Set to true if groupedServices should include pricing types that do not have any pricing instances
+    this.loadEmptyPricingTypes = ko.observable(false);
+
+    this.isLoading = ko.computed(function() {
+        return (
+//! from activity version; don't need _both_ sps model states at any given time, depends
+// on what loadDataFor is doing.
+            app.model.users.getServiceProfessionalServices.state.isLoading() ||
+            app.model.serviceProfessionalServices.state.isLoading() ||
+            app.model.pricingTypes.state.isLoading() ||
+            app.model.jobTitles.state.isLoading()
+        );
+    });
     
     this.reset = function() {
         this.isLoading(false);
@@ -79,8 +91,8 @@ function ServiceProfessionalServiceViewModel(app) {
                 return gr;
             });
         }
-        
-        if (!this.isSelectionMode()) {
+
+        if (!this.isSelectionMode() || !this.loadEmptyPricingTypes()) {
             // Since the groupsList is built from the existent pricing items
             // if there are no records for some pricing type (or nothing when
             // just created the job title), that types/groups are not included,
@@ -177,13 +189,7 @@ function ServiceProfessionalServiceViewModel(app) {
         // Add current selection as preselection, so can be recovered later and 
         // the editor can add the new pricing to the list
         if (this.isSelectionMode()) {
-            request.selectedServices = this.selectedServices()
-            .map(function(pricing) {
-                return {
-                    serviceProfessionalServiceID: ko.unwrap(pricing.serviceProfessionalServiceID),
-                    totalPrice: ko.unwrap(pricing.totalPrice)
-                };
-            });
+            request.selectedServices = this.selectedServices().map(this.selectedServiceRequest);
         }
 
         app.shell.go(url, request);
@@ -191,12 +197,18 @@ function ServiceProfessionalServiceViewModel(app) {
         event.preventDefault();
         event.stopImmediatePropagation();
     }.bind(this);
-    
+
+    this.selectedServiceRequest = function(pricing) {
+        return {
+            serviceProfessionalServiceID: ko.unwrap(pricing.serviceProfessionalServiceID),
+            totalPrice: ko.unwrap(pricing.totalPrice)
+        };
+    };
+
     ///
     /// Load Data
     var loadDataFor = function loadDataFor(serviceProfessionalID, jobTitleID) {
         if (jobTitleID) {
-            this.isLoading(true);
             // Get data for the Job title ID and pricing types.
             // They are essential data
             return Promise.all([
@@ -209,6 +221,7 @@ function ServiceProfessionalServiceViewModel(app) {
                 this.jobTitle(jobTitle);
                 // Get services
                 if (serviceProfessionalID)
+//! this clause specific to this viewmodel
                     return app.model.users.getServiceProfessionalServices(serviceProfessionalID, jobTitleID);
                 else
                     return app.model.serviceProfessionalServices.getList(jobTitleID);
@@ -235,14 +248,11 @@ function ServiceProfessionalServiceViewModel(app) {
                     }
                 });
                 this.list(list);
-                
-                this.isLoading(false);
-                
+
                 this.emit('loaded');
 
             }.bind(this))
             .catch(function (err) {
-                this.isLoading(false);
                 app.modals.showError({
                     title: 'There was an error while loading.',
                     error: err
