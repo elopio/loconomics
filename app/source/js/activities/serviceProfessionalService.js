@@ -60,7 +60,7 @@ var A = Activity.extend(function ServiceProfessionalServiceActivity() {
     this.registerHandler({
         target: this.viewModel.jobTitleID,
         handler: function(jobTitleID) {
-            this.loadData(null, jobTitleID);
+            this.viewModel.loadData(null, jobTitleID);
         }.bind(this)
     });
     
@@ -140,8 +140,8 @@ A.prototype.show = function show(options) {
 
     // Reset: avoiding errors because persisted data for different ID on loading
     // or outdated info forcing update
-    this.viewMode.reset();
-    this.viewModel.requestData = this.requestData;
+    this.viewModel.reset();
+    this.viewModel.requestData(this.requestData);
     this.viewModel.preSelectedServices(this.requestData.selectedServices || []);
 
     this.viewModel.isSelectionMode(this.requestData.selectPricing === true);
@@ -187,7 +187,7 @@ function ViewModel(app) {
     this.loadEmptyPricingTypes(true);
 
     this.helpLink = '/help/relatedArticles/201967166-listing-and-pricing-your-services';
-    this.isInOnboarding = this.app.model.onboarding.inProgress;
+    this.isInOnboarding = app.model.onboarding.inProgress;
     this.headerText = ko.observable('Services');
     this.isLocked = this.isLoading;
 
@@ -245,3 +245,5 @@ function ViewModel(app) {
         return pricing.model.toPlainObject(true);
     };
 }
+
+ViewModel._inherits(ServiceProfessionalServiceViewModel);

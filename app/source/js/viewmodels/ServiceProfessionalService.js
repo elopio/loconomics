@@ -31,16 +31,7 @@ function ServiceProfessionalServiceViewModel(app) {
     // Set to true if groupedServices should include pricing types that do not have any pricing instances
     this.loadEmptyPricingTypes = ko.observable(false);
 
-    this.isLoading = ko.computed(function() {
-        return (
-//! from activity version; don't need _both_ sps model states at any given time, depends
-// on what loadDataFor is doing.
-            app.model.users.getServiceProfessionalServices.state.isLoading() ||
-            app.model.serviceProfessionalServices.state.isLoading() ||
-            app.model.pricingTypes.state.isLoading() ||
-            app.model.jobTitles.state.isLoading()
-        );
-    });
+    this.isLoading = ko.observable(false);
     
     this.reset = function() {
         this.isLoading(false);
@@ -209,6 +200,7 @@ function ServiceProfessionalServiceViewModel(app) {
     /// Load Data
     var loadDataFor = function loadDataFor(serviceProfessionalID, jobTitleID) {
         if (jobTitleID) {
+            this.isLoading(true);
             // Get data for the Job title ID and pricing types.
             // They are essential data
             return Promise.all([
@@ -221,7 +213,6 @@ function ServiceProfessionalServiceViewModel(app) {
                 this.jobTitle(jobTitle);
                 // Get services
                 if (serviceProfessionalID)
-//! this clause specific to this viewmodel
                     return app.model.users.getServiceProfessionalServices(serviceProfessionalID, jobTitleID);
                 else
                     return app.model.serviceProfessionalServices.getList(jobTitleID);
@@ -248,11 +239,13 @@ function ServiceProfessionalServiceViewModel(app) {
                     }
                 });
                 this.list(list);
-
+                this.isLoading(false);
                 this.emit('loaded');
 
             }.bind(this))
             .catch(function (err) {
+                this.isLoading(false);
+
                 app.modals.showError({
                     title: 'There was an error while loading.',
                     error: err
