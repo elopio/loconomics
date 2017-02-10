@@ -1,9 +1,4 @@
 /*  Javascript loader, for lazy loading scripts or bundles.
-    // with Modernizr: Assets loader with loading confirmation (mainly for scripts).
-    
-    It uses jquery getScript API
-    // based on Modernizr/yepnope loader.
-    // var Modernizr = require('modernizr');
 */
 'use strict';
 var $ = require('jquery');
@@ -42,10 +37,6 @@ exports.load = function (opts) {
         }
     }
     function load() {
-        /*Modernizr.load({
-            load: opts.scripts,
-            complete: opts.complete ? performComplete : null
-        });*/
         return Promise.all(opts.scripts.map(function(sc) { return $.getScript(sc); }))
         .then(opts.complete ? performComplete : null);
     }

@@ -3,8 +3,7 @@
     we want.
  **/
 // Tests que necesitamos
-require('browsernizr/test/inputtypes');
-require('browsernizr/test/css/transforms');
+require('browsernizr/test/history');
 
 // Cargando Modernizr y devolviendo la instancia:
 module.exports = require('browsernizr');

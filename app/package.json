@@ -24,7 +24,7 @@
     "bliss": "~1.0.1",
     "blueimp-canvas-to-blob": "^2.2.0",
     "browserify": "3.46.1",
-    "browsernizr": "~1.0.2",
+    "browsernizr": "~2.0.1",
     "es6-promise": "~2.0.1",
     "events": "~1.0.2",
     "geocomplete": "^1.6.5",
